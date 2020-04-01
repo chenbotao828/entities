@@ -198,3 +198,20 @@
       )
     )
   )
+
+(defcls 'aligned_dim 'entity '(p1 p2 p3 dim_style))
+(defmethod 'aligned_dim 'dxf
+  (lambda (self)
+    (list
+        (cons 0 "DIMENSION")
+        (cons 100 "AcDbEntity")
+        (cons 100 "AcDbDimension")
+        (cons 10 (do self 'p3))
+        (cons 70 1)
+        (cons 3 (do self 'dim_style))
+        (cons 100 "AcDbAlignedDimension")
+        (cons 13 (do self 'p1))
+        (cons 14 (do self 'p2))
+        )
+    )
+  )
